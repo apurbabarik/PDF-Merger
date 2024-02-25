@@ -20,7 +20,7 @@
 import express from 'express';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import {mergePdfs} from '../PDF-Merger/merge.js'
+import {mergePdfs} from './merge.js'
 import multer from 'multer';
 const upload = multer({ dest: 'uploads/' })
 const __filename = fileURLToPath(import.meta.url);
@@ -28,7 +28,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use('/static', express.static('public'))
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname,"./templates/index.html"))
+       res.sendFile(path.join(__dirname,"./index.html"))
 });
 app.post('/merge', upload.array('pdfs', 2), async (req, res, next)=> {
     console.log(req.files);
